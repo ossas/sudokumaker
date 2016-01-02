@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - "5.0.0"
+before_install:
+ - "npm install -g gulp"
+# whitelist
+branches:
+  only:
+    - master
+before_deploy: "glup"
+deploy:
+  provider: releases
+  api_key:
+    secure: D7QkXMGWdGdZ4JlgNq8qlakwOuNitZvIY3qTsoDb3xuObCwaySUASXu2+N0wLnAaMKQKONDpFSqANwuGPiad/Ws5scuajrySIaTCMDBkSNz6igmO5vwEuLHcvRGIEnzEMhIDDFs1hxeoQf+5D6nuFsaVny09JVw6vp8ybJVTc48=
+  file:
+    - "dist/js/sdm.min.js"
+  skip_cleanup: true
+  on:
+    tags: true
+    all_branches: true
+    repo: kimorkim/sdokuMaker
+notifications:
+  email:
+    - kimorkim@gmail.com
