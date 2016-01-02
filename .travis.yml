@@ -3,6 +3,9 @@ node_js:
 - 5.0.0
 before_install:
 - npm install -g gulp
+branches:
+  only:
+  - master
 notifications:
   email:
   - kimorkim@gmail.com
