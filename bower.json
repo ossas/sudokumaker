@@ -1,0 +1,25 @@
+{
+  "name": "sdokuMaker",
+  "homepage": "https://github.com/kimorkim/sdokuMaker",
+  "authors": [
+    "kimorkim <kimorkim@gmail.com>"
+  ],
+  "description": "sdoku make script",
+  "main": "sdoku.js",
+  "moduleType": [],
+  "keywords": [
+    "sdoku"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
