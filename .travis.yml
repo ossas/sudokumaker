@@ -3,9 +3,6 @@ node_js:
 - 5.0.0
 before_install:
 - npm install -g gulp
-branches:
-  only:
-  - master
 notifications:
   email:
   - kimorkim@gmail.com
@@ -19,6 +16,6 @@ deploy:
     - "dist/js/sdm.min.js.map"
   skip_cleanup: true
   on:
-    tags: false
-    all_branches: false
+    tags: true
+    all_branches: true
     repo: kimorkim/sdokuMaker
