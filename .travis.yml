@@ -19,3 +19,4 @@ deploy:
     tags: true
     all_branches: true
     repo: kimorkim/sdokuMaker
+    
