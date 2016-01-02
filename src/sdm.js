@@ -19,6 +19,8 @@
 			}
 		};
 
+		
+
 		my.init = function () {
 			initRndNum();
 		}
