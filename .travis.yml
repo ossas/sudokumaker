@@ -14,10 +14,6 @@ deploy:
    file:
     - "dist/js/sdm.min.js"
   skip_cleanup: true
-  on:
-    tags: false
-    all_branches: false
-    repo: kimorkim/sdokuMaker
 notifications:
   email:
   - kimorkim@gmail.com
