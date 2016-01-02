@@ -6,6 +6,9 @@ before_install:
 branches:
   only:
   - master
+notifications:
+  email:
+  - kimorkim@gmail.com
 before_deploy: gulp deploy
 deploy:
   provider: releases
@@ -13,11 +16,9 @@ deploy:
     secure: H+Qtnvo8ZsQ5AwytSqVmZbxGYG0ncLFT35i3XKvySwTqlnsaLoZ7HxSti9PireNzJ3y3NT8ePlv1OlLfSFJ7jU7GLkHq+v9O/1duBc5RFtYliwIjlVjotkhS8vX6HlMakL4xeaeU72E6DPPZN36MdMwrDEgZUN3TGEFNiFK50/t8CYPb1avvSwfxbTK/xgtm0u3IfSydOhpq0DrrwhbZSk/krgvfejil3CZ377Z892Hagcsks7GHvz7yVhW5z6kFyW7Th4y6mW/v21OgGKdxtCJCpHXT3JetOlpbEtqtxIZGogNOyXtzCHFvrbZmw3TPH4/0/HMkIy4o2o9rcay23W6YvoBELQDZMVTgf/6yyxt19eMFUXuofNO3vSYu9ALRwoX9jIE7JqoA9g4BZ4vGXf1ucG/Ak6gP/C7+kXYTgTL254RuTQeRq7fwg4ootKINm7DjPwAXUs+Kpb0XtnPej58Mzqu3Rnlm+6RfPvfzE+23xMCMY2xOCLXv2JZOOp9qZqjtcbnnnkHlft/OnUFR4UG1tMjuh7TD/Ci714HuYyGYlpTWHzCVSteMhCFbL4fmWhth0A1evfD9Rtuq2ErGyxIMPiEPe+xDIC5ljR82I8GIp0FpKUEoX3OaMFvaeM8wG68RWVzjIetyJFHn3p77EalX2U4UWKljriXDHrM5KIA=
   file:
     - "dist/js/sdm.min.js"
+    - "dist/js/sdm.min.js.map"
   skip_cleanup: true
   on:
     tags: false
     all_branches: false
     repo: kimorkim/sdokuMaker
-notifications:
-  email:
-  - kimorkim@gmail.com
