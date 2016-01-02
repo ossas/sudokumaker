@@ -1,6 +1,11 @@
-(function(window, $) {
+"use strict";
+
+(function(window) {
 	var sdm  = (function () {
 		var my = {};
+
+		let a = 1;
+		const b = 1;
 
 		var _target = [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ];
 
@@ -55,4 +60,4 @@
 
 	window.sdm = sdm;
 
-})(window, jQuery);
+})(window);
