@@ -41,3 +41,5 @@ gulp.task('watch', function() {
  
 // The default task (called when you run `gulp` from cli) 
 gulp.task('default', ['watch', 'scripts', 'less']);
+
+gulp.task('deploy', ['scripts', 'less']);

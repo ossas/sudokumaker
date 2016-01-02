@@ -7,7 +7,7 @@ before_install:
 branches:
   only:
     - master
-before_deploy: "gulp"
+before_deploy: "gulp deploy"
 deploy:
   provider: releases
   api_key:
