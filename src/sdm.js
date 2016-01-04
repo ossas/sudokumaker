@@ -4,8 +4,7 @@
 	var sdm  = (function () {
 		var my = {};
 
-		let a = 1;
-		const b = 1;
+		var master_count = 0;
 
 		var _target = [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ];
 
