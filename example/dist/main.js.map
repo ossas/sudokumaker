@@ -1,1 +1,0 @@
-{"version":3,"sources":["main.js"],"names":["ReactDOM","render","React","createElement","document","getElementById"],"mappings":"AAAA,YACAA,UAASC,OACPC,MAAAC,cAAA,KAAG,KAAC,iBACJC,SAASC,eAAe","file":"main.js","sourcesContent":["\r\nReactDOM.render(\r\n  React.createElement(\"h1\", null, \"Hello, world!\"),\r\n  document.getElementById('example')\r\n);"],"sourceRoot":"/source/"}

@@ -12,7 +12,7 @@ var del = require('del');
 var paths = {
   	scripts: ['src/**/*.js'],
   	less: ['src/**/*.less'],
-    view: ['example/**/*.js', '!example/dist/**/*.js']
+    // view: ['example/**/*.js', '!example/dist/**/*.js']
 };
 
 
@@ -25,15 +25,15 @@ gulp.task('less', function () {
     .pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('view', function() {
-  return gulp.src(paths.view)
-    .pipe(sourcemaps.init())
-    .pipe(react())
-    .pipe(babel())
-    .pipe(uglify())
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('example/dist'));
-});
+// gulp.task('view', function() {
+//   return gulp.src(paths.view)
+//     .pipe(sourcemaps.init())
+//     .pipe(react())
+//     .pipe(babel())
+//     .pipe(uglify())
+//     .pipe(sourcemaps.write('.'))
+//     .pipe(gulp.dest('example/dist'));
+// });
 
 gulp.task('scripts', function() {
 	return gulp.src(paths.scripts)
@@ -49,10 +49,10 @@ gulp.task('scripts', function() {
 gulp.task('watch', function() {
   	gulp.watch(paths.scripts, ['scripts']);
     gulp.watch(paths.less, ['less']);
-  	gulp.watch(paths.view, ['view']);
+  	// gulp.watch(paths.view, ['view']);
 });
  
 // The default task (called when you run `gulp` from cli) 
-gulp.task('default', ['watch', 'scripts', 'less', 'view']);
+gulp.task('default', ['watch', 'scripts', 'less');
 
 gulp.task('deploy', ['scripts', 'less']);
