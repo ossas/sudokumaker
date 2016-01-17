@@ -46,7 +46,7 @@
 					var pick_idx = Math.floor(Math.random() * value.length);
 					var coord = getCoordByCount(value[pick_idx]);
 					random_game[coord.i][coord.j][coord.k] = undefined;
-					value.splice(pick_idx, pick_idx);
+					value.splice(pick_idx, 1);
 				}
 
 				game_data = {
