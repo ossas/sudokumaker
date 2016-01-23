@@ -4,9 +4,6 @@
 	var sdm  = (function () {
 		var my = {};
 
-		let a = 1;
-		const b = 1;
-
 		var _target = [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ];
 
 		var initRndNum = function() {
@@ -18,8 +15,6 @@
 				}
 			}
 		};
-
-		
 
 		my.init = function () {
 			initRndNum();
@@ -56,6 +51,119 @@
 			}
 
 			return game_data;
+		}
+
+		my.gameDataCheck = function (game_data) {
+			var check_data = {
+				box: {},
+				rows: {},
+				cols: {}
+			};
+
+			for(var i = 0; i < 9; i++) {
+				var duplicate = [];
+				game_data[i].forEach(function (items, _j) {
+					items.forEach(function (item, _k) {
+						var prev_item_idx = duplicate.indexOf(item);
+						if(prev_item_idx >= 0 && item !== undefined) {
+							var key = '' + i + _j + _k;
+							check_data.box[key] = {
+								_i : i,
+								_j : _j,
+								_k : _k
+							};
+
+							var p_j = Math.floor(prev_item_idx / 3);
+							var p_k = prev_item_idx % 3;
+							var prev_key = '' + i + p_j + p_k;
+
+							check_data.box[prev_key] = {
+								_i : i,
+								_j : p_j,
+								_k : p_k
+							};
+						}
+						duplicate.push(item);
+					});
+				});
+			}
+
+			for(var i = 0; i < 9; i=i+3) {
+				for(var j = 0; j < 3; j++) {
+					var duplicate = [];
+					var rows = game_data[i][j].concat(game_data[i+1][j], game_data[i+2][j]);
+					rows.forEach(function (item, idx) {
+						var _i = i + (i % 3);
+						var _k = idx % 3;
+						var prev_item_idx = duplicate.indexOf(item);
+						if(prev_item_idx >= 0 && item !== undefined) {
+							var key = '' + _i + j + _k;
+							check_data.rows[key] = {
+								_i : _i,
+								_j : j,
+								_k : _k
+							};
+
+							var p_i = i + (prev_item_idx % 3);							
+							var p_k = prev_item_idx % 3;							
+
+							var prev_key = '' + p_i + j + p_k;
+
+							check_data.rows[prev_key] = {
+								_i : p_i,
+								_j : j,
+								_k : p_k
+							};
+						}
+						duplicate.push(item);
+					});
+				}
+			}
+
+			for(var i = 0; i < 3; i++) {
+				for(var k = 0; k < 3; k++) {
+					var duplicate = [];
+					var j = 0;
+
+					var cols = [];
+
+					cols.push(game_data[i][j][k]);
+					cols.push(game_data[i][j+1][k]);
+					cols.push(game_data[i][j+2][k]);
+					cols.push(game_data[i+3][j][k]);
+					cols.push(game_data[i+3][j+1][k]);
+					cols.push(game_data[i+3][j+2][k]);
+					cols.push(game_data[i+6][j][k]);
+					cols.push(game_data[i+6][j+1][k]);
+					cols.push(game_data[i+6][j+2][k]);
+
+					cols.forEach(function (item, idx) {
+						var _i = (Math.floor(idx/3) * 3) + i;
+						var _j = idx % 3;
+						var prev_item_idx = duplicate.indexOf(item);
+						if(prev_item_idx >= 0 && item !== undefined) {
+							var key = '' + _i + _j + k;
+							check_data.cols[key] = {
+								_i : _i,
+								_j : _j,
+								_k : k
+							};
+
+							var p_i = (Math.floor(prev_item_idx/3) * 3) + i;
+							var p_j = prev_item_idx % 3;
+							var prev_key = '' + p_i + p_j + k;
+							check_data.cols[prev_key] = {
+								_i : p_i,
+								_j : p_j,
+								_k : k
+							};
+						}
+						duplicate.push(item);
+					});
+				}
+			}
+
+			return check_data;
 		}
 
 		var searchXY = function(data, value) {
