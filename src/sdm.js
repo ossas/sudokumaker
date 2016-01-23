@@ -65,7 +65,7 @@
 				game_data[i].forEach(function (items, _j) {
 					items.forEach(function (item, _k) {
 						var prev_item_idx = duplicate.indexOf(item);
-						if(prev_item_idx >= 0 && item !== undefined) {
+						if(prev_item_idx >= 0 && item) {
 							var key = '' + i + _j + _k;
 							check_data.box[key] = {
 								_i : i,
@@ -93,10 +93,10 @@
 					var duplicate = [];
 					var rows = game_data[i][j].concat(game_data[i+1][j], game_data[i+2][j]);
 					rows.forEach(function (item, idx) {
-						var _i = i + (i % 3);
+						var _i = i + Math.floor(idx / 3);
 						var _k = idx % 3;
 						var prev_item_idx = duplicate.indexOf(item);
-						if(prev_item_idx >= 0 && item !== undefined) {
+						if(prev_item_idx >= 0 && item) {
 							var key = '' + _i + j + _k;
 							check_data.rows[key] = {
 								_i : _i,
@@ -104,7 +104,7 @@
 								_k : _k
 							};
 
-							var p_i = i + (prev_item_idx % 3);							
+							var p_i = i + Math.floor(prev_item_idx / 3);							
 							var p_k = prev_item_idx % 3;							
 
 							var prev_key = '' + p_i + j + p_k;
@@ -141,7 +141,7 @@
 						var _i = (Math.floor(idx/3) * 3) + i;
 						var _j = idx % 3;
 						var prev_item_idx = duplicate.indexOf(item);
-						if(prev_item_idx >= 0 && item !== undefined) {
+						if(prev_item_idx >= 0 && item) {
 							var key = '' + _i + _j + k;
 							check_data.cols[key] = {
 								_i : _i,
