@@ -55,10 +55,14 @@
 
 		my.gameDataCheck = function (game_data) {
 			var check_data = {
+				state: 'complete',
 				box: {},
 				rows: {},
 				cols: {}
 			};
+
+			var isSolving = false;
+			var isFail = false;
 
 			for(var i = 0; i < 9; i++) {
 				var duplicate = [];
@@ -66,6 +70,7 @@
 					items.forEach(function (item, _k) {
 						var prev_item_idx = duplicate.indexOf(item);
 						if(prev_item_idx >= 0 && item) {
+							isFail = true;
 							var key = '' + i + _j + _k;
 							check_data.box[key] = {
 								_i : i,
@@ -82,6 +87,8 @@
 								_j : p_j,
 								_k : p_k
 							};
+						} else if(!item){
+							isSolving = true;
 						}
 						duplicate.push(item);
 					});
@@ -97,6 +104,7 @@
 						var _k = idx % 3;
 						var prev_item_idx = duplicate.indexOf(item);
 						if(prev_item_idx >= 0 && item) {
+							isFail = true;
 							var key = '' + _i + j + _k;
 							check_data.rows[key] = {
 								_i : _i,
@@ -114,6 +122,8 @@
 								_j : j,
 								_k : p_k
 							};
+						} else if(!item){
+							isSolving = true;
 						}
 						duplicate.push(item);
 					});
@@ -142,6 +152,7 @@
 						var _j = idx % 3;
 						var prev_item_idx = duplicate.indexOf(item);
 						if(prev_item_idx >= 0 && item) {
+							isFail = true;
 							var key = '' + _i + _j + k;
 							check_data.cols[key] = {
 								_i : _i,
@@ -157,10 +168,18 @@
 								_j : p_j,
 								_k : k
 							};
+						} else if(!item){
+							isSolving = true;
 						}
 						duplicate.push(item);
 					});
 				}
+			}
+
+			if(isFail) {
+				check_data.state = 'fail';
+			} else if(isSolving) {
+				check_data.state = 'solving';
 			}
 
 			return check_data;
