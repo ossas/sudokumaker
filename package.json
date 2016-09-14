@@ -2,7 +2,7 @@
   "name": "sudokuMaker",
   "version": "v1.0.7",
   "description": "sudokuMaker",
-  "main": "./dist/SudoKuMaker.min.js",
+  "main": "./dist/sudoKuMaker.min.js",
   "directories": {
     "example": "example"
   },
