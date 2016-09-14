@@ -14,6 +14,8 @@ module.exports = {
         path: path.join(__dirname, 'dist'),
         publicPath: '/',
         filename: '[name].js',
+        library: 'SudokuMaker',
+        libraryTarget: 'var',
     },
     // devtool: 'source-map',
     module: {
@@ -21,7 +23,11 @@ module.exports = {
             exclude: /node_modules/,
             loader: 'babel',
             query: {
-                presets: ['es2015', 'stage-2']
+                presets: ['es2015', 'stage-2'],
+                plugins: [
+                    'add-module-exports',
+                    'transform-es2015-modules-umd',
+                ],
             }
         }]
     },

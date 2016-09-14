@@ -45,8 +45,6 @@ GamePattern[10] = [ "A", "Z", "W", "U", "AA", "X", "V", "AB", "Y" ];
 GamePattern[11] = [ "A", "Z", "W", "V", "AB", "Y", "U", "AA", "X" ];
 GamePattern[12] = [ "A", "W", "Z", "V", "Y", "AB", "U", "X", "AA" ];
 
-console.log(GamePattern);
-
 export {
 	TilePattern,
 	GamePattern

@@ -6,6 +6,10 @@ const PlayTypes = {
 	SOLVING: 'SOLVING',
 }
 
+const CreateTypes = {
+	RANDOM: 'RANDOM',
+}
+
 export {
 	PlayTypes
 }
