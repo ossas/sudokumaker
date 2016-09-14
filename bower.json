@@ -1,0 +1,20 @@
+{
+  "name": "sudokuMaker",
+  "description": "sudokuMaker",
+  "main": "./dist/SudoKuMaker.min.js",
+  "authors": [
+    "kimorkim"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "sudoku"
+  ],
+  "homepage": "https://github.com/ossas/sudokuMaker",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
