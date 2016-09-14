@@ -3,28 +3,22 @@
 import { TilePattern, GamePattern } from './Pattern';
 import { PlayTypes, CreateTypes } from './Constants';
 
-export default class sudokuMaker {
-	constructor(type) {
-		this.createType = type || CreateTypes.RANDOM;
+class sudokuMaker {
+	constructor() {
+		this.createType = CreateTypes.RANDOM;
 	}	
 
-	initRndNum() {
-		let baseData = [];
-		const number = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
-		for ( let i = 0; i < 3; i++) {
-			for ( let j = 0; j < 3; j++) {
-				if(!baseData[j]) {
-					baseData[j] = [];
-				}
-				baseData[j][i] = [];
-				baseData[j][i] = (number.splice(Math.floor(Math.random() * number.length), 1))[0];
-			}
-		}
-		return baseData;
+	setType(type) {
+		this.createType = type || CreateTypes.RANDOM;
+	}
+
+	getType() {
+		const createType = this.createType || CreateTypes.RANDOM;
+		return createType;
 	}
 
 	createGame() {
-		const baseData = this.initRndNum();
+		const baseData = initRndNum();
 		let number = Math.floor((Math.random() * GamePattern.length));
 		let type = GamePattern[number];
 		let gameData = [];
@@ -48,7 +42,7 @@ export default class sudokuMaker {
 			}
 
 			gameData = {
-				org : gameData,
+				correctData : gameData,
 				data: randomGamePattern
 			}
 		}
@@ -190,6 +184,21 @@ export default class sudokuMaker {
 	}
 }
 
+function initRndNum() {
+	let baseData = [];
+	const number = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+	for ( let i = 0; i < 3; i++) {
+		for ( let j = 0; j < 3; j++) {
+			if(!baseData[j]) {
+				baseData[j] = [];
+			}
+			baseData[j][i] = [];
+			baseData[j][i] = (number.splice(Math.floor(Math.random() * number.length), 1))[0];
+		}
+	}
+	return baseData;
+}
+
 function searchXY(data, value) {
 	let temp = [];
 	for ( let i = 0; i < 3; i++) {
@@ -224,3 +233,5 @@ function getCoordByCount(count) {
 		k: _k
 	}
 }
+
+export default new sudokuMaker;

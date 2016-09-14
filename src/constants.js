@@ -11,5 +11,6 @@ const CreateTypes = {
 }
 
 export {
-	PlayTypes
+	PlayTypes,
+	CreateTypes
 }

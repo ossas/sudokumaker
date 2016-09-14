@@ -3,10 +3,10 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        SudokuMaker: [
+        sudokuMaker: [
             './src/index.js',
         ], 
-        'SudokuMaker.min': [
+        'sudokuMaker.min': [
             './src/index.js',
         ], 
     },
@@ -14,8 +14,8 @@ module.exports = {
         path: path.join(__dirname, 'dist'),
         publicPath: '/',
         filename: '[name].js',
-        library: 'SudokuMaker',
-        libraryTarget: 'var',
+        library: 'sudokuMaker',
+        libraryTarget: 'umd',
     },
     // devtool: 'source-map',
     module: {
