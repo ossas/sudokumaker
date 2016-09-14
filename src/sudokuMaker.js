@@ -1,37 +1,53 @@
 'use strict';
 
-(function(window) {
-	var sdm  = (function () {
-		var my = {};
+import { TilePattern, GamePattern } from './Pattern';
+import { PlayTypes } from './Constants';
 
-		var _target = [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ];
+(function(factory) {
+	if(typeof exports === 'object') {
+		export factory;
+	} else if() {
+		define(factory);
+	} else {
+		window.SudokuMaker = factory;
+	}
+}(function() {
+	class sudokuMaker {
+		constructor() {
+			this.gameType = 'random';
+		}	
 
-		var initRndNum = function() {
-			var number = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
-			for ( var i = 0; i < 3; i++) {
-				for ( var j = 0; j < 3; j++) {
-					_target[j][i] = [];
-					_target[j][i] = (number.splice(Math.floor(Math.random() * number.length), 1))[0];
+		initRndNum() {
+			let baseData = [];
+			const number = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+			for ( let i = 0; i < 3; i++) {
+				for ( let j = 0; j < 3; j++) {
+					if(!baseData[j]) {
+						baseData[j] = [];
+					}
+					baseData[j][i] = [];
+					baseData[j][i] = (number.splice(Math.floor(Math.random() * number.length), 1))[0];
 				}
 			}
-		};
-
-		my.init = function () {
-			initRndNum();
+			return baseData;
 		}
 
-		my.getGameData = function(game_type) {
-			initRndNum();
-			var number = Math.floor((Math.random() * _GAME.length));
-			var type = _GAME[number];
-			var game_data = [];
+		init() {
+			// this.initRndNum();
+		}
 
-			type.forEach(function (data, index) {
-				game_data.push(moveCard(_target, _PATTERN[data]));
+		createGame() {
+			const baseData = this.initRndNum();
+			let number = Math.floor((Math.random() * GamePattern.length));
+			let type = GamePattern[number];
+			let gameData = [];
+
+			gameData = type.map((data, index) => {
+				return moveCard(baseData, TilePattern[data]);
 			});
 
-			if(game_type === 'random') {
-				var random_game = objectClone(game_data);
+			if(this.gameType === 'random') {
+				var randomGamePattern = objectClone(gameData);
 				var value = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '60', '61', '62', '63', '64', '65', '66', '67', '68', '69', '70', '71', '72', '73', '74', '75', '76', '77', '78', '79', '80']
 				var end = 40;
 				var start = 25;
@@ -40,22 +56,23 @@
 				for(var i = 0; i < pick_cnt; i++) {
 					var pick_idx = Math.floor(Math.random() * value.length);
 					var coord = getCoordByCount(value[pick_idx]);
-					random_game[coord.i][coord.j][coord.k] = undefined;
+					randomGamePattern[coord.i][coord.j][coord.k] = undefined;
 					value.splice(pick_idx, 1);
 				}
 
-				game_data = {
-					org : game_data,
-					data: random_game
+				gameData = {
+					org : gameData,
+					data: randomGamePattern
 				}
 			}
 
-			return game_data;
+			return gameData;
 		}
 
-		my.gameDataCheck = function (game_data) {
-			var check_data = {
-				state: 'complete',
+
+		gameDataCheck(gameData) {
+			const checkData = {
+				state: PlayTypes.COMPLETE,
 				box: {},
 				rows: {},
 				cols: {}
@@ -66,13 +83,13 @@
 
 			for(var i = 0; i < 9; i++) {
 				var duplicate = [];
-				game_data[i].forEach(function (items, _j) {
+				gameData[i].forEach(function (items, _j) {
 					items.forEach(function (item, _k) {
 						var prev_item_idx = duplicate.indexOf(item);
 						if(prev_item_idx >= 0 && item) {
 							isFail = true;
 							var key = '' + i + _j + _k;
-							check_data.box[key] = {
+							checkData.box[key] = {
 								_i : i,
 								_j : _j,
 								_k : _k
@@ -82,7 +99,7 @@
 							var p_k = prev_item_idx % 3;
 							var prev_key = '' + i + p_j + p_k;
 
-							check_data.box[prev_key] = {
+							checkData.box[prev_key] = {
 								_i : i,
 								_j : p_j,
 								_k : p_k
@@ -98,7 +115,7 @@
 			for(var i = 0; i < 9; i=i+3) {
 				for(var j = 0; j < 3; j++) {
 					var duplicate = [];
-					var rows = game_data[i][j].concat(game_data[i+1][j], game_data[i+2][j]);
+					var rows = gameData[i][j].concat(gameData[i+1][j], gameData[i+2][j]);
 					rows.forEach(function (item, idx) {
 						var _i = i + Math.floor(idx / 3);
 						var _k = idx % 3;
@@ -106,7 +123,7 @@
 						if(prev_item_idx >= 0 && item) {
 							isFail = true;
 							var key = '' + _i + j + _k;
-							check_data.rows[key] = {
+							checkData.rows[key] = {
 								_i : _i,
 								_j : j,
 								_k : _k
@@ -117,7 +134,7 @@
 
 							var prev_key = '' + p_i + j + p_k;
 
-							check_data.rows[prev_key] = {
+							checkData.rows[prev_key] = {
 								_i : p_i,
 								_j : j,
 								_k : p_k
@@ -137,15 +154,15 @@
 
 					var cols = [];
 
-					cols.push(game_data[i][j][k]);
-					cols.push(game_data[i][j+1][k]);
-					cols.push(game_data[i][j+2][k]);
-					cols.push(game_data[i+3][j][k]);
-					cols.push(game_data[i+3][j+1][k]);
-					cols.push(game_data[i+3][j+2][k]);
-					cols.push(game_data[i+6][j][k]);
-					cols.push(game_data[i+6][j+1][k]);
-					cols.push(game_data[i+6][j+2][k]);
+					cols.push(gameData[i][j][k]);
+					cols.push(gameData[i][j+1][k]);
+					cols.push(gameData[i][j+2][k]);
+					cols.push(gameData[i+3][j][k]);
+					cols.push(gameData[i+3][j+1][k]);
+					cols.push(gameData[i+3][j+2][k]);
+					cols.push(gameData[i+6][j][k]);
+					cols.push(gameData[i+6][j+1][k]);
+					cols.push(gameData[i+6][j+2][k]);
 
 					cols.forEach(function (item, idx) {
 						var _i = (Math.floor(idx/3) * 3) + i;
@@ -154,7 +171,7 @@
 						if(prev_item_idx >= 0 && item) {
 							isFail = true;
 							var key = '' + _i + _j + k;
-							check_data.cols[key] = {
+							checkData.cols[key] = {
 								_i : _i,
 								_j : _j,
 								_k : k
@@ -163,7 +180,7 @@
 							var p_i = (Math.floor(prev_item_idx/3) * 3) + i;
 							var p_j = prev_item_idx % 3;
 							var prev_key = '' + p_i + p_j + k;
-							check_data.cols[prev_key] = {
+							checkData.cols[prev_key] = {
 								_i : p_i,
 								_j : p_j,
 								_k : k
@@ -177,52 +194,49 @@
 			}
 
 			if(isFail) {
-				check_data.state = 'fail';
+				checkData.state = PlayTypes.FAIL;
 			} else if(isSolving) {
-				check_data.state = 'solving';
+				checkData.state = PlayTypes.SOLVING;
 			}
 
-			return check_data;
+			return checkData;
 		}
+	}
 
-		var searchXY = function(data, value) {
-			var temp = [];
-			for ( var i = 0; i < 3; i++) {
-				temp = temp.concat(data[i]);
-			}
-			return temp[value]
+	function searchXY(data, value) {
+		var temp = [];
+		for ( var i = 0; i < 3; i++) {
+			temp = temp.concat(data[i]);
 		}
+		return temp[value]
+	}
 
-		var moveCard = function(data, pattern) {
-			var result = [ [ 0, 0, 0 ], [ 0, 0, 0 ], [ 0, 0, 0 ] ];
-			var getTable = [];
-			for ( var i = 0; i < 3; i++) {
-				for ( var j = 0; j < 3; j++) {
-					result[i][j] = searchXY(data, pattern[i][j]);
-				}
-			}
-			return result;
-		}
-
-		var objectClone = function (object) {
-			return JSON.parse(JSON.stringify(object));
-		}
-
-		var getCoordByCount = function (count) {
-			var _i = Math.floor((count - 1) / 9);
-			var _j = Math.floor((count % 9) / 3);
-			var _k = Math.floor((count % 9) % 3);
-
-			return {
-				i: _i,
-				j: _j,
-				k: _k
+	function moveCard(data, pattern) {
+		var result = [ [ 0, 0, 0 ], [ 0, 0, 0 ], [ 0, 0, 0 ] ];
+		var getTable = [];
+		for ( var i = 0; i < 3; i++) {
+			for ( var j = 0; j < 3; j++) {
+				result[i][j] = searchXY(data, pattern[i][j]);
 			}
 		}
-		
-		return my;
-	})();
+		return result;
+	}
 
-	window.sdm = sdm;
+	function objectClone(object) {
+		return JSON.parse(JSON.stringify(object));
+	}
 
-})(window);
+	function getCoordByCount(count) {
+		var _i = Math.floor((count - 1) / 9);
+		var _j = Math.floor((count % 9) / 3);
+		var _k = Math.floor((count % 9) % 3);
+
+		return {
+			i: _i,
+			j: _j,
+			k: _k
+		}
+	}
+
+	return sudokuMaker;
+}));
