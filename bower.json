@@ -1,7 +1,7 @@
 {
-  "name": "sudokuMaker",
+  "name": "sudoku_maker",
   "description": "sudokuMaker",
-  "main": "./dist/SudoKuMaker.min.js",
+  "main": "./dist/SudoKuMaker.js",
   "authors": [
     "kimorkim"
   ],
