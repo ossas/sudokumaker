@@ -53,7 +53,7 @@ class sudokuMaker {
 
 	gameDataCheck(gameData) {
 		const checkData = {
-			state: PlayTypes.COMPLETE,
+			state: PlayTypes.SUCCESS,
 			box: {},
 			rows: {},
 			cols: {}
@@ -178,6 +178,8 @@ class sudokuMaker {
 			checkData.state = PlayTypes.FAIL;
 		} else if(isSolving) {
 			checkData.state = PlayTypes.SOLVING;
+		} else {
+			PlayTypes.state = PlayTypes.SUCCESS;
 		}
 
 		return checkData;

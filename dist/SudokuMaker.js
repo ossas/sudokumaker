@@ -173,7 +173,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					key: 'gameDataCheck',
 					value: function gameDataCheck(gameData) {
 						var checkData = {
-							state: _Constants.PlayTypes.COMPLETE,
+							state: _Constants.PlayTypes.SUCCESS,
 							box: {},
 							rows: {},
 							cols: {}
@@ -318,6 +318,8 @@ return /******/ (function(modules) { // webpackBootstrap
 							checkData.state = _Constants.PlayTypes.FAIL;
 						} else if (isSolving) {
 							checkData.state = _Constants.PlayTypes.SOLVING;
+						} else {
+							_Constants.PlayTypes.state = _Constants.PlayTypes.SUCCESS;
 						}
 
 						return checkData;
