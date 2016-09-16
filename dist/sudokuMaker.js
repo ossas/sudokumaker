@@ -65,12 +65,12 @@ return /******/ (function(modules) { // webpackBootstrap
 		if (true) {
 			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(3), __webpack_require__(2)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 		} else if (typeof exports !== "undefined") {
-			factory(module, exports, require('./Pattern'), require('./Constants'));
+			factory(module, exports, require('./pattern'), require('./constants'));
 		} else {
 			var mod = {
 				exports: {}
 			};
-			factory(mod, mod.exports, global.Pattern, global.Constants);
+			factory(mod, mod.exports, global.pattern, global.constants);
 			global.index = mod.exports;
 		}
 	})(this, function (module, exports) {
@@ -83,10 +83,10 @@ return /******/ (function(modules) { // webpackBootstrap
 				var mod = {
 					exports: {}
 				};
-				factory(mod, mod.exports, global.Pattern, global.Constants);
+				factory(mod, mod.exports, global.pattern, global.constants);
 				global.index = mod.exports;
 			}
-		})(this, function (module, exports, _Pattern, _Constants) {
+		})(this, function (module, exports, _pattern, _constants) {
 			'use strict';
 
 			Object.defineProperty(exports, "__esModule", {
@@ -121,33 +121,33 @@ return /******/ (function(modules) { // webpackBootstrap
 				function sudokuMaker() {
 					_classCallCheck(this, sudokuMaker);
 
-					this.createType = _Constants.CreateTypes.RANDOM;
+					this.createType = _constants.CreateTypes.RANDOM;
 				}
 
 				_createClass(sudokuMaker, [{
 					key: 'setType',
 					value: function setType(type) {
-						this.createType = type || _Constants.CreateTypes.RANDOM;
+						this.createType = type || _constants.CreateTypes.RANDOM;
 					}
 				}, {
 					key: 'getType',
 					value: function getType() {
-						var createType = this.createType || _Constants.CreateTypes.RANDOM;
+						var createType = this.createType || _constants.CreateTypes.RANDOM;
 						return createType;
 					}
 				}, {
 					key: 'createGame',
 					value: function createGame() {
 						var baseData = initRndNum();
-						var number = Math.floor(Math.random() * _Pattern.GamePattern.length);
-						var type = _Pattern.GamePattern[number];
+						var number = Math.floor(Math.random() * _pattern.GamePattern.length);
+						var type = _pattern.GamePattern[number];
 						var gameData = [];
 
 						gameData = type.map(function (data, index) {
-							return moveCard(baseData, _Pattern.TilePattern[data]);
+							return moveCard(baseData, _pattern.TilePattern[data]);
 						});
 
-						if (this.createType === _Constants.CreateTypes.RANDOM) {
+						if (this.createType === _constants.CreateTypes.RANDOM) {
 							var end = 40;
 							var start = 25;
 							var pick_cnt = Math.floor(Math.random() * (end - start + 1) + start);
@@ -173,7 +173,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					key: 'gameDataCheck',
 					value: function gameDataCheck(gameData) {
 						var checkData = {
-							state: _Constants.PlayTypes.SUCCESS,
+							state: _constants.PlayTypes.SUCCESS,
 							box: {},
 							rows: {},
 							cols: {}
@@ -315,11 +315,11 @@ return /******/ (function(modules) { // webpackBootstrap
 						}
 
 						if (isFail) {
-							checkData.state = _Constants.PlayTypes.FAIL;
+							checkData.state = _constants.PlayTypes.FAIL;
 						} else if (isSolving) {
-							checkData.state = _Constants.PlayTypes.SOLVING;
+							checkData.state = _constants.PlayTypes.SOLVING;
 						} else {
-							_Constants.PlayTypes.state = _Constants.PlayTypes.SUCCESS;
+							_constants.PlayTypes.state = _constants.PlayTypes.SUCCESS;
 						}
 
 						return checkData;
@@ -398,7 +398,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				exports: {}
 			};
 			factory(mod.exports);
-			global.Constants = mod.exports;
+			global.constants = mod.exports;
 		}
 	})(this, function (exports) {
 		(function (global, factory) {
@@ -411,7 +411,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					exports: {}
 				};
 				factory(mod.exports);
-				global.Constants = mod.exports;
+				global.constants = mod.exports;
 			}
 		})(this, function (exports) {
 			'use strict';
@@ -449,7 +449,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				exports: {}
 			};
 			factory(mod.exports);
-			global.Pattern = mod.exports;
+			global.pattern = mod.exports;
 		}
 	})(this, function (exports) {
 		(function (global, factory) {
@@ -462,7 +462,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					exports: {}
 				};
 				factory(mod.exports);
-				global.Pattern = mod.exports;
+				global.pattern = mod.exports;
 			}
 		})(this, function (exports) {
 			"use strict";

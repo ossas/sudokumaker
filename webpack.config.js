@@ -17,7 +17,6 @@ module.exports = {
         library: 'sudokuMaker',
         libraryTarget: 'umd',
     },
-    // devtool: 'source-map',
     module: {
         loaders: [{
             exclude: /node_modules/,
