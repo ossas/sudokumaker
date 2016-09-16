@@ -1,7 +1,7 @@
 'use strict';
 
-import { TilePattern, GamePattern } from './Pattern';
-import { PlayTypes, CreateTypes } from './Constants';
+import { TilePattern, GamePattern } from './pattern';
+import { PlayTypes, CreateTypes } from './constants';
 
 class sudokuMaker {
 	constructor() {
