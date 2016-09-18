@@ -9,7 +9,7 @@
   "keywords": [
     "sudoku"
   ],
-  "homepage": "https://github.com/ossas/sudokuMaker",
+  "homepage": "https://github.com/ossas/sudokumaker",
   "ignore": [
     "**/.*",
     "node_modules",
