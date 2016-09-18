@@ -1,6 +1,6 @@
 {
   "name": "sudokumaker",
-  "version": "v1.0.8",
+  "version": "v1.0.9",
   "description": "sudokumaker",
   "main": "./dist/sudokumaker.min.js",
   "directories": {
