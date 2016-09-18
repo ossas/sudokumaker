@@ -117,14 +117,14 @@ return /******/ (function(modules) { // webpackBootstrap
 				};
 			}();
 
-			var sudokumaker = function () {
-				function sudokumaker() {
-					_classCallCheck(this, sudokumaker);
+			var sudokuMaker = function () {
+				function sudokuMaker() {
+					_classCallCheck(this, sudokuMaker);
 
 					this.createType = _constants.CreateTypes.RANDOM;
 				}
 
-				_createClass(sudokumaker, [{
+				_createClass(sudokuMaker, [{
 					key: 'setType',
 					value: function setType(type) {
 						this.createType = type || _constants.CreateTypes.RANDOM;
@@ -326,7 +326,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					}
 				}]);
 
-				return sudokumaker;
+				return sudokuMaker;
 			}();
 
 			function initRndNum() {
@@ -379,7 +379,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				};
 			}
 
-			exports.default = new sudokumaker();
+			exports.default = new sudokuMaker();
 			module.exports = exports['default'];
 		});
 	});
