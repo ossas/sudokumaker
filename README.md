@@ -1,7 +1,7 @@
-# sudokuMaker
+# sudokumaker
 
-  [![Build Status](https://travis-ci.org/ossas/sudokuMaker.svg?branch=master)](https://travis-ci.org/ossas/sudokuMaker)  
-  sudokuMaker
+  [![Build Status](https://travis-ci.org/ossas/sudokumaker.svg?branch=master)](https://travis-ci.org/ossas/sudokumaker)  
+  sudokumaker
   
 
 ## License

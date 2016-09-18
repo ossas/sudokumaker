@@ -3,7 +3,7 @@
 import { TilePattern, GamePattern } from './pattern';
 import { PlayTypes, CreateTypes } from './constants';
 
-class sudokuMaker {
+class sudokumaker {
 	constructor() {
 		this.createType = CreateTypes.RANDOM;
 	}	
@@ -236,4 +236,4 @@ function getCoordByCount(count) {
 	}
 }
 
-export default new sudokuMaker;
+export default new sudokumaker;

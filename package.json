@@ -1,8 +1,8 @@
 {
-  "name": "sudokuMaker",
+  "name": "sudokumaker",
   "version": "v1.0.8",
-  "description": "sudokuMaker",
-  "main": "./dist/sudoKuMaker.min.js",
+  "description": "sudokumaker",
+  "main": "./dist/sudokumaker.min.js",
   "directories": {
     "example": "example"
   },
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ossas/sudokuMaker.git"
+    "url": "https://github.com/ossas/sudokumaker.git"
   },
   "keywords": [
     "sudoku"
@@ -29,9 +29,9 @@
   "author": "kimorkim",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ossas/sudokuMaker/issues"
+    "url": "https://github.com/ossas/sudokumaker/issues"
   },
-  "homepage": "https://github.com/ossas/sudokuMaker#readme",
+  "homepage": "https://github.com/ossas/sudokumaker#readme",
   "devDependencies": {
     "ava": "^0.16.0",
     "babel": "^6.5.2",
