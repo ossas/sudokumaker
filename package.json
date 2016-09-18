@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://kimorkim@github.com/kimorkim/sudokuMaker.git"
+    "url": "https://github.com/ossas/sudokuMaker.git"
   },
   "keywords": [
     "sudoku"
@@ -29,9 +29,9 @@
   "author": "kimorkim",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kimorkim/sudokuMaker/issues"
+    "url": "https://github.com/ossas/sudokuMaker/issues"
   },
-  "homepage": "https://github.com/kimorkim/sudokuMaker#readme",
+  "homepage": "https://github.com/ossas/sudokuMaker#readme",
   "devDependencies": {
     "ava": "^0.16.0",
     "babel": "^6.5.2",
